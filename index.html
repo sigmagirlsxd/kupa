@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spam XD</title>
+    <style>
+        body {
+            background-color: #111;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .message {
+            position: absolute;
+            font-size: 40px;
+            font-weight: bold;
+            animation: spamEffect 0.5s infinite;
+        }
+
+        @keyframes spamEffect {
+            0% { opacity: 1; transform: translateX(0) scale(1); }
+            50% { opacity: 0; transform: translateX(100px) scale(2); }
+            100% { opacity: 1; transform: translateX(-100px) scale(1); }
+        }
+
+        audio {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="spamContainer"></div>
+
+    <audio autoplay loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+        Twoja przeglądarka nie obsługuje audio.
+    </audio>
+
+    <script>
+        // Funkcja do tworzenia napisu "XD" w losowym miejscu
+        function createMessage() {
+            const message = document.createElement('div');
+            message.classList.add('message');
+            message.textContent = 'XD';
+            message.style.left = `${Math.random() * window.innerWidth}px`;
+            message.style.top = `${Math.random() * window.innerHeight}px`;
+            document.getElementById('spamContainer').appendChild(message);
+
+            // Usuwanie wiadomości po pewnym czasie
+            setTimeout(() => {
+                message.remove();
+            }, 3000);
+        }
+
+        // Tworzenie napisu co 200ms
+        setInterval(createMessage, 200);
+    </script>
+</body>
+</html>
